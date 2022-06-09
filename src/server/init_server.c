@@ -15,9 +15,23 @@ server_t *init_server(char *ip_addr, int port)
     server->port = port;
 
     // init socket
+    fd_set readfds;
     // init server addr
+    struct sockaddr_in address;
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons( PORT )
     // bind
+    int bind_ret = bind(server->socket, (struct sockaddr *)&server_addr, sizeof(server_addr));
+    if (bind_ret == -1) {
+        perror("bind");
+        exit(EXIT_FAILURE);
+    }
     // listen
-
+    int listen_ret = listen(server->socket, MAX_CLIENTS);
+    if (listen_ret == -1) {
+        perror("listen");
+        exit(EXIT_FAILURE);
+    }
     return server;
 }

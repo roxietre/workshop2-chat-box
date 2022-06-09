@@ -20,6 +20,9 @@
 #include <netdb.h>
 #include <stdio.h>
 
+#define MAX_CLIENTS 10
+#define PORT 8888
+
 typedef struct server_s {
     struct sockaddr_in addr;
     struct timeval timeout;
