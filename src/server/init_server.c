@@ -17,12 +17,11 @@ server_t *init_server(char *ip_addr, int port)
     // init socket
     fd_set readfds;
     // init server addr
-    struct sockaddr_in address;
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons( PORT )
+    server->addr.sin_family = AF_INET;
+    server->addr.sin_addr.s_addr = INADDR_ANY;
+    server->addr.sin_port = htons( PORT );
     // bind
-    int bind_ret = bind(server->socket, (struct sockaddr *)&server_addr, sizeof(server_addr));
+    int bind_ret = bind(server->socket, (struct sockaddr *)&server->addr, sizeof(server->addr));
     if (bind_ret == -1) {
         perror("bind");
         exit(EXIT_FAILURE);
@@ -33,5 +32,6 @@ server_t *init_server(char *ip_addr, int port)
         perror("listen");
         exit(EXIT_FAILURE);
     }
+    server->addrlen = sizeof(server->addr);
     return server;
 }
