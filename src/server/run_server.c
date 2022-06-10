@@ -15,10 +15,10 @@ void run_server(server_t *serv)
     int max_clients = MAX_CLIENTS;
     int sd;
     int activity;
+    int client_socket[MAX_CLIENTS] = {0};
     int valread;
     char buffer[1025];
     char *message = "ta maman est plus que c'elle que c'elle de tristan";
-    int client_socket[MAX_CLIENTS];
     while (1)
     {
         FD_ZERO(&serv->readfds);

@@ -11,7 +11,7 @@ int main(int ac, char **av)
 {
     if (error_handling(ac, av[1]) == EXIT_FAILURE)
     {
-        fprintf(stderr, "Error : Incorrect argument(s).\nUSAGE : ./server [ip address] [port]\n");
+        fprintf(stderr, "Error : Incorrect argument(s).\nUSAGE : ./server [port]\n");
         return EXIT_FAILURE;
     }
     else

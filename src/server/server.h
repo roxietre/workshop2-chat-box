@@ -20,7 +20,7 @@
 #include <netdb.h>
 #include <stdio.h>
 
-#define MAX_CLIENTS 90
+#define MAX_CLIENTS 30
 #define PORT 8888
 
 typedef struct server_s {
@@ -35,7 +35,7 @@ typedef struct server_s {
 
     int *fd_array;
 
-    int addrlen;
+    int addrlen ;
     int socket;
     int fdmax;
     int port;

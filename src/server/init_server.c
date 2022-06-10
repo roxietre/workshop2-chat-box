@@ -9,13 +9,23 @@
 
 server_t *init_server(char *ip_addr, int port)
 {
+    int opt = 1;
     server_t *server = malloc(sizeof(server_t));
 
     server->ip_addr = ip_addr;
     server->port = port;
-
     // init socket
-    fd_set readfds;
+    
+    if ((server->socket = socket(AF_INET, SOCK_STREAM, 0) )== 0) {
+        perror("socket");
+        exit(EXIT_FAILURE);
+    }
+    if( setsockopt(server->socket, SOL_SOCKET, SO_REUSEADDR, (char *)&opt,
+          sizeof(opt)) < 0 )
+    {
+        perror("setsockopt");
+        exit(EXIT_FAILURE);
+    }
     // init server addr
     server->addr.sin_family = AF_INET;
     server->addr.sin_addr.s_addr = INADDR_ANY;
