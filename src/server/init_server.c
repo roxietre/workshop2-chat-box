@@ -15,7 +15,6 @@ server_t *init_server(char *ip_addr, int port)
     server->ip_addr = ip_addr;
     server->port = port;
     // init socket
-    
     if ((server->socket = socket(AF_INET, SOCK_STREAM, 0) )== 0) {
         perror("socket");
         exit(EXIT_FAILURE);
@@ -43,5 +42,7 @@ server_t *init_server(char *ip_addr, int port)
         exit(EXIT_FAILURE);
     }
     server->addrlen = sizeof(server->addr);
+    server->client_socket = malloc(sizeof(int) * MAX_CLIENTS);
+    FD_ZERO(&server->fds);
     return server;
 }

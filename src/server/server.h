@@ -33,7 +33,7 @@ typedef struct server_s {
 
     char *ip_addr;
 
-    int *fd_array;
+    int *client_socket;
 
     int addrlen ;
     int socket;
